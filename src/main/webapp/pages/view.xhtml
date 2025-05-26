@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Person View</title>
+</h:head>
+<h:body>
+
+    <f:metadata>
+        <f:viewParam name="personId" value="#{personViewBean.personId}" />
+        <f:event type="preRenderView" listener="#{personViewBean.loadPerson}" />
+    </f:metadata>
+
+    <h:form>
+        <h2>Person Details</h2>
+
+        <h:panelGrid columns="2">
+            <h:outputLabel value="ID:"/>
+            <h:outputText value="#{personViewBean.person.id}"/>
+
+            <h:outputLabel value="Name:"/>
+            <h:outputText value="#{personViewBean.person.name}"/>
+        </h:panelGrid>
+
+        <h3>Documents</h3>
+        <p:dataTable value="#{personViewBean.person.documents}" var="doc">
+            <p:column headerText="Type">
+                #{doc.type}
+            </p:column>
+            <p:column headerText="Number">
+                #{doc.number}
+            </p:column>
+        </p:dataTable>
+
+        <h3>Addresses</h3>
+        <p:dataTable value="#{personViewBean.person.addresses}" var="addr">
+            <p:column headerText="Address">
+                #{addr.address}
+            </p:column>
+            <p:column headerText="Number">
+                #{addr.number}
+            </p:column>
+        </p:dataTable>
+
+        <h3>Contacts</h3>
+        <p:dataTable value="#{personViewBean.person.contacts}" var="cont">
+            <p:column headerText="Name">
+                #{cont.name}
+            </p:column>
+            <p:column headerText="Telephone">
+                #{cont.telephone}
+            </p:column>
+        </p:dataTable>
+
+        <p:commandButton value="Back"
+                         action="index.xhtml"/>
+    </h:form>
+
+</h:body>
+</html>

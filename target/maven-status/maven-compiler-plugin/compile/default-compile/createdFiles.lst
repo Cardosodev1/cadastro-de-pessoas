@@ -1,0 +1,8 @@
+projeto\controller\PersonRegisterBean.class
+projeto\model\Contact.class
+projeto\controller\PersonSearchBean.class
+projeto\model\Person.class
+projeto\model\Address.class
+projeto\model\Document.class
+projeto\repository\PersonRepository.class
+projeto\controller\PersonViewBean.class

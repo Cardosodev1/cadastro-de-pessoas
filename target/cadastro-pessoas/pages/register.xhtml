@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Person Register</title>
+</h:head>
+<h:body>
+
+    <h:form>
+        <h2>Person Register</h2>
+
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Name:"/>
+            <p:inputText value="#{personRegisterBean.person.name}"/>
+        </h:panelGrid>
+
+        <h3>Documents</h3>
+        <p:dataTable value="#{personRegisterBean.person.documents}" var="doc">
+            <p:column headerText="Type">
+                #{doc.type}
+            </p:column>
+            <p:column headerText="Number">
+                #{doc.number}
+            </p:column>
+            <p:column>
+                <p:commandButton icon="pi pi-times"
+                                 actionListener="#{personRegisterBean.removeDocument(doc)}"
+                                 update="@form"/>
+            </p:column>
+        </p:dataTable>
+
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Type"/>
+            <p:inputText value="#{personRegisterBean.document.type}"/>
+
+            <h:outputLabel value="Number"/>
+            <p:inputText value="#{personRegisterBean.document.number}"/>
+
+            <p:commandButton value="Add Document"
+                             actionListener="#{personRegisterBean.addDocument}"
+                             update="@form"/>
+        </h:panelGrid>
+
+        <h3>Addresses</h3>
+        <p:dataTable value="#{personRegisterBean.person.addresses}" var="addr">
+            <p:column headerText="Address">
+                #{addr.address}
+            </p:column>
+            <p:column headerText="Number">
+                #{addr.number}
+            </p:column>
+            <p:column>
+                <p:commandButton icon="pi pi-times"
+                                 actionListener="#{personRegisterBean.removeAddress(addr)}"
+                                 update="@form"/>
+            </p:column>
+        </p:dataTable>
+
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Address"/>
+            <p:inputText value="#{personRegisterBean.address.address}"/>
+
+            <h:outputLabel value="Number"/>
+            <p:inputText value="#{personRegisterBean.address.number}"/>
+
+            <p:commandButton value="Add Address"
+                             actionListener="#{personRegisterBean.addAddress}"
+                             update="@form"/>
+        </h:panelGrid>
+
+        <h3>Contacts</h3>
+        <p:dataTable value="#{personRegisterBean.person.contacts}" var="cont">
+            <p:column headerText="Name">
+                #{cont.name}
+            </p:column>
+            <p:column headerText="Telephone">
+                #{cont.telephone}
+            </p:column>
+            <p:column>
+                <p:commandButton icon="pi pi-times"
+                                 actionListener="#{personRegisterBean.removeContact(cont)}"
+                                 update="@form"/>
+            </p:column>
+        </p:dataTable>
+
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Name"/>
+            <p:inputText value="#{personRegisterBean.contact.name}"/>
+
+            <h:outputLabel value="Telephone"/>
+            <p:inputText value="#{personRegisterBean.contact.telephone}"/>
+
+            <p:commandButton value="Add Contact"
+                             actionListener="#{personRegisterBean.addContact}"
+                             update="@form"/>
+        </h:panelGrid>
+
+        <p:commandButton value="Save"
+                         actionListener="#{personRegisterBean.save}"
+                         update="@form"/>
+
+        <p:commandButton value="Back"
+                         action="index.xhtml"/>
+    </h:form>
+
+</h:body>
+</html>

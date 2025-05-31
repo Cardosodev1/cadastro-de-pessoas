@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 <h:head>
     <title>Person Register</title>
 </h:head>
@@ -9,6 +11,11 @@
 
     <h:form>
         <h2>Person Register</h2>
+
+        <f:metadata>
+            <f:viewParam name="personId" value="#{personRegisterBean.personId}" />
+            <f:viewAction action="#{personRegisterBean.init}" />
+        </f:metadata>
 
         <h:panelGrid columns="2">
             <h:outputLabel value="Name:"/>

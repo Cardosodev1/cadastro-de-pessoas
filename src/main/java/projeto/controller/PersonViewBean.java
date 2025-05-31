@@ -12,7 +12,7 @@ import java.io.Serializable;
 @RequestScoped
 public class PersonViewBean implements Serializable {
 
-    private Long personId;
+    private Integer personId;
     private Person person;
 
     @Inject
@@ -24,11 +24,11 @@ public class PersonViewBean implements Serializable {
         }
     }
 
-    public Long getPersonId() {
+    public Integer getPersonId() {
         return personId;
     }
 
-    public void setPersonId(Long personId) {
+    public void setPersonId(Integer personId) {
         this.personId = personId;
     }
 

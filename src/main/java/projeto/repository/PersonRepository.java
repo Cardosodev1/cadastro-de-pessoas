@@ -31,7 +31,7 @@ public class PersonRepository {
         }
     }
 
-    public Person findById(Long id) {
+    public Person findById(Integer id) {
         return em.find(Person.class, id);
     }
 

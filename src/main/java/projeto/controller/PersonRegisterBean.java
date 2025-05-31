@@ -6,10 +6,10 @@ import projeto.model.Document;
 import projeto.model.Person;
 import projeto.repository.PersonRepository;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.PostLoad;
 import java.io.Serializable;
 
 @Named
@@ -17,7 +17,7 @@ import java.io.Serializable;
 public class PersonRegisterBean implements Serializable {
 
     private Person person = new Person();
-    private Long personId;
+    private Integer personId;
 
     private Document document = new Document();
     private Address address = new Address();
@@ -26,10 +26,19 @@ public class PersonRegisterBean implements Serializable {
     @Inject
     private PersonRepository personRepository;
 
-    @PostLoad
+    @PostConstruct
     public void init() {
+        document = new Document();
+        address = new Address();
+        contact = new Contact();
+
         if (personId != null) {
             person = personRepository.findById(personId);
+            if (person == null) {
+                person = new Person();
+            }
+        } else {
+            person = new Person();
         }
     }
 
@@ -64,18 +73,18 @@ public class PersonRegisterBean implements Serializable {
     }
 
     public void save() {
+        personRepository.save(person);
         person = new Person();
         document = new Document();
         address = new Address();
         contact = new Contact();
-        personRepository.save(person);
     }
 
-    public Long getPersonId() {
+    public Integer getPersonId() {
         return personId;
     }
 
-    public void setPersonId(Long personId) {
+    public void setPersonId(Integer personId) {
         this.personId = personId;
     }
 

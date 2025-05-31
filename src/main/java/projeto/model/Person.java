@@ -24,13 +24,16 @@ public class Person {
     @Column(name = "nr_telephone", length = 200)
     private String telephone;
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OrderColumn(name = "document_order")
     private List<Document> documents = new ArrayList<>();
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OrderColumn(name = "contact_order")
     private List<Contact> contacts = new ArrayList<>();
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OrderColumn(name = "address_order")
     private List<Address> addresses = new ArrayList<>();
 
     public Integer getId() {
